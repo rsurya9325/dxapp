@@ -57,11 +57,11 @@ class Registration{
 
         try{
         $de_pwd = md5($uspwd);    
-        $stmt = $this -> db ->prepare("SELECT * FROM registration WHERE username = :uname and upassword = :uspwd ");
+        $stmt = $this -> db ->prepare("SELECT * FROM resources WHERE resource_id = :uname and resource_password = :uspwd ");
         $stmt -> execute(array(':uname' => $usname, ':uspwd' => $de_pwd));
         $loginuser = $stmt -> fetch(PDO::FETCH_ASSOC);
         
-        if($stmt -> rowcount() >0 ){
+        if($stmt -> rowcount() > 0 ){
 
             $_SESSION['logged_user'] = $loginuser['id'];
            

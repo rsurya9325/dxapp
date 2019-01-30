@@ -1,6 +1,9 @@
 <?php 
 
 require_once 'config/config.php';
+
+
+
 if($reg -> is_login()!=""){
 
 	$reg -> redirect('dashboard.php');
@@ -73,13 +76,7 @@ if(isset($_POST['login_submit']))
                       <i class="glyphicon glyphicon-warning-sign"></i> &nbsp; <?php echo $error; ?> !
                   </div>
                   <?php
-            } else if(isset($_GET['noapproval'])){ fgdf
-
-            ?>
-            <div class="alert alert-warning">
-                      <i class="glyphicon glyphicon-warning-sign"></i> &nbsp; Please waiting for admin approval !
-                  </div>
-            <?php } ?>
+            } ?>
 
 
 		        <div class="login-wrap">
