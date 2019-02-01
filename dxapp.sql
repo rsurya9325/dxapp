@@ -1,10 +1,5 @@
 
-CREATE TABLE admin_users (
-  id int(12)NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  user_name varchar(255) NOT NULL,
-  password varchar(255) NOT NULL,
-  role enum('Superadmin','admin') DEFAULT NULL
-); 
+
 
 
 
@@ -34,7 +29,7 @@ CREATE TABLE resources (
   resource_location varchar(255) NOT NULL,
   resource_join_date date DEFAULT NULL,
   resource_status enum('Active','Inactive') DEFAULT NULL,
-  resource_role enum('Superadmin','admin','employee')
+  resource_role enum('Superadmin','admin','employee'),
 ); 
 
 
@@ -46,7 +41,8 @@ CREATE TABLE skills (
 
 CREATE TABLE allocations (
   id int(12) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  alloaction_date date DEFAULT NULL,
+  alloaction_start_date date DEFAULT NULL,
+  allocation_end_date date DEFAULT NULL,
   resource_id int(12) NOT NULL,
   FOREIGN KEY (resource_id) REFERENCES resources(id),
   project_id int(12) NOT NULL,
@@ -58,5 +54,22 @@ CREATE TABLE allocation_history (
   resource_id int(12) NOT NULL,
   FOREIGN KEY (resource_id) REFERENCES resources(id),
   project_id int(12) NOT NULL,
-  FOREIGN KEY (project_id) REFERENCES projects(id)
+  FOREIGN KEY (project_id) REFERENCES projects(id),
+  allocation_start_date date NOT NULL,
+  FOREIGN KEY (allocation_start_date) REFERENCES allocations(id),
+  allocation_end_date date NOT NULL,
+  FOREIGN KEY (allocation_end_date) REFERENCES allocations(id)
+  
 ); 
+
+CREATE TABLE skill_rating (
+  id int(12) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  resource_id int(12) NOT NULL,
+  FOREIGN KEY (resource_id) REFERENCES resources(id),
+  skill_id int(12) NOT NULL,
+  FOREIGN KEY (skill_id) REFERENCES skills(id),
+  rating int(12)NOT NULL
+); 
+
+ALTER TABLE `allocations` ADD `allocation_end_date` DATE NOT NULL AFTER `alloaction_start_date`;
+ALTER TABLE `resources` ADD `resource_resume` BLOB NOT NULL AFTER `resource_role`;

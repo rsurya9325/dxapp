@@ -1,5 +1,5 @@
 <?php 
-session_start();
+
 
 
 $DB_user = "root";
@@ -15,6 +15,5 @@ catch(PDOException $e)
 {
      echo "<span style='color:#ff9900;'>".$e->getMessage()."</span>";
 }
-include_once 'log_reg.php';
-$reg = new Registration($DB_con); 
+
 ?>
