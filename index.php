@@ -1,3 +1,40 @@
+<?php 
+
+include 'config/config.php';
+
+include 'classes/resourcesClass.php';
+
+$resClass = new resourceClass();
+
+$errorMsgLogin='';
+
+if(!empty($_POST['formsub'])){
+
+$userid = $_POST['userid'];
+$password = $_POST['userpasswd'];
+
+
+if(strlen(trim($userid))>0 && strlen(trim($password))>0 )
+{
+
+$uid = $resClass->userLogin($userid,$password);
+    
+if($uid)
+{
+$url=BASE_URL.'dashboard.php';
+header("Location: $url"); // Page redirecting to home.php 
+}
+else
+{
+$errorMsgLogin="Please check login details.";
+}
+
+}
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +60,7 @@
 
 <body class="bg-gradient-primary">
 
+
   <div class="container">
 
     <!-- Outer Row -->
@@ -39,18 +77,19 @@
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <?php echo $errorMsgLogin; ?>
                   </div>
-                  <form method="post" name="loginform" class="user">
+                  <form method="post" action="" id="loginForm" class="user">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="userid" name="userid" aria-describedby="emailHelp" placeholder="Employee ID">
+                      <input type="text" class="form-control form-control-user" id="userid" name="userid" aria-describedby="emailHelp" placeholder="Employee ID">
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" id="userpasswd" name="userpasswd" placeholder="Password">
                     </div>
                     
-                    <button type="submit" name="login_submit" class="btn btn-primary btn-user btn-block">
-                      Login
-                    </button>
+                    <input type="submit" name="formsub" value="Login" class="btn btn-primary btn-user btn-block">
+                    
+                    </form>
                 </div>
               </div>
             </div>
