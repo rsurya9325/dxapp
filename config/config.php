@@ -5,7 +5,7 @@ define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_DATABASE', 'dxapp');
-define("BASE_URL", "http://localhost/dxapp/");
+define("BASE_URL", "http://localhost:8080/dxapp/");
 
 
 function getDB() {

@@ -8,25 +8,29 @@ $resClass = new resourceClass();
 
 $errorMsgLogin='';
 
-if(!empty($_POST['formsub'])){
+
+if(isset($_POST['formsub'])){
 
 $userid = $_POST['userid'];
 $password = $_POST['userpasswd'];
 
 
-if(strlen(trim($userid))>0 && strlen(trim($password))>0 )
+if(strlen(trim($userid)) > 1 && strlen(trim($password))> 1 )
 {
 
 $uid = $resClass->userLogin($userid,$password);
-    
+
+ 
+	
 if($uid)
 {
 $url=BASE_URL.'dashboard.php';
-header("Location: $url"); // Page redirecting to home.php 
+header("Location: $url"); 
+
 }
 else
 {
-$errorMsgLogin="Please check login details.";
+$errorMsgLogin= "Please check login details.";
 }
 
 }
@@ -54,7 +58,7 @@ $errorMsgLogin="Please check login details.";
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-  <link href="bootstrapvalidator/css/bootstrapValidator.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
 
 </head>
 
@@ -77,7 +81,7 @@ $errorMsgLogin="Please check login details.";
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                    <?php echo $errorMsgLogin; ?>
+                    <?php echo "<div class='alert alert-danger'><p>".$errorMsgLogin."</p></div>"; ?>
                   </div>
                   <form method="post" action="" id="loginForm" class="user">
                     <div class="form-group">
@@ -87,7 +91,7 @@ $errorMsgLogin="Please check login details.";
                       <input type="password" class="form-control form-control-user" id="userpasswd" name="userpasswd" placeholder="Password">
                     </div>
                     
-                    <input type="submit" name="formsub" value="Login" class="btn btn-primary btn-user btn-block">
+                    <button type="submit" name="formsub"  class="btn btn-primary btn-user btn-block">Submit</button>
                     
                     </form>
                 </div>
@@ -105,7 +109,7 @@ $errorMsgLogin="Please check login details.";
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>

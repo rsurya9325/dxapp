@@ -1,34 +1,42 @@
-$(document).ready(function() {
 
-    $('#loginForm').bootstrapValidator({
+	$(document).ready(function() {
+		jQuery.validator.addMethod("lettersonly", function(value, element) {
+  return this.optional(element) || /^[a-z]+$/i.test(value);
+}, "Only Alphabetical Letters");
+		
+$("#loginForm").validate({
+	
+	ignore: ".ignore",
+			rules: {
+				userid: {
+					required: true,
+					
+				},
+				
+				userpasswd: {
+					required: true,
+				},
+				
+				
+			},
+			messages: {
+				userid: {
+					required: "Please enter  your Userid",
+					
+				},
+				userpasswd: {
+					required: "Please enter  your Password",
+					
+				},
+				
+				
+			},
+			 submitHandler: function(form) {
+			// alert('demo');
+    form.submit();
+  }
+		});
+		
 
-        message: 'This value is not valid',
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-
-        fields: {
-            userid: {
-                group:'.form-group',
-                validators: {
-                    notEmpty: {
-                        message: 'Employee ID should not be empty'
-                    }
-                }
-            },
-            userpasswd: {
-                group:'.form-group',
-                validators: {
-                    notEmpty: {
-                        message: 'Password is empty'
-                    }
-                }
-            }
-
-        }
-    
-    });
-
-});
+		
+				});

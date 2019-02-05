@@ -1,0 +1,12 @@
+.error{
+	font-size:12px;
+	color:#ff0000;
+	width:100%;
+}
+input.error{
+	border:1px solid #ff0000;
+}
+input.error:placeholder{
+	border:1px solid #ff0000;
+}
+
