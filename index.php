@@ -20,7 +20,6 @@ if(strlen(trim($userid)) > 1 && strlen(trim($password))> 1 )
 
 $uid = $resClass->userLogin($userid,$password);
 
- 
 	
 if($uid)
 {
@@ -81,7 +80,7 @@ $errorMsgLogin= "Please check login details.";
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                    <?php echo "<div class='alert alert-danger'><p>".$errorMsgLogin."</p></div>"; ?>
+
                   </div>
                   <form method="post" action="" id="loginForm" class="user">
                     <div class="form-group">
